@@ -1,4 +1,3 @@
 # Android-I
-Pós-Graduação em Desenvolvimento para Dispositivos Móveis
-
+IESB - Pós-Graduação em Desenvolvimento para Dispositivos Móveis
 Prof. Kenniston Bonfim
