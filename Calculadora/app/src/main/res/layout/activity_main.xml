@@ -25,9 +25,9 @@
         android:layout_height="0dp"
         android:background="@android:color/darker_gray"
         android:gravity="center_vertical|center_horizontal"
-        android:text="AC"
+        android:text="@string/ac"
         android:textColor="@android:color/background_dark"
-        app:layout_constraintBottom_toTopOf="@+id/textView8"
+        app:layout_constraintBottom_toTopOf="@+id/txtSete"
         app:layout_constraintEnd_toStartOf="@+id/txtA"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -35,14 +35,14 @@
         app:layout_constraintTop_toBottomOf="@+id/txtResult" />
 
     <TextView
-        android:id="@+id/textPercentual"
+        android:id="@+id/txtPercentual"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@android:color/darker_gray"
         android:gravity="center_vertical|center_horizontal"
-        android:text="%"
+        android:text="@string/percentual"
         android:textColor="@android:color/background_dark"
-        app:layout_constraintBottom_toTopOf="@+id/textView9"
+        app:layout_constraintBottom_toTopOf="@+id/txtNove"
         app:layout_constraintEnd_toStartOf="@+id/txtDivisao"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/txtA"
@@ -54,10 +54,10 @@
         android:layout_height="0dp"
         android:background="@android:color/darker_gray"
         android:gravity="center_vertical|center_horizontal"
-        android:text="A"
+        android:text="@string/a"
         android:textColor="@android:color/background_dark"
-        app:layout_constraintBottom_toTopOf="@+id/textView10"
-        app:layout_constraintEnd_toStartOf="@+id/textPercentual"
+        app:layout_constraintBottom_toTopOf="@+id/txtOito"
+        app:layout_constraintEnd_toStartOf="@+id/txtPercentual"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/txtAC"
         app:layout_constraintTop_toBottomOf="@+id/txtResult" />
@@ -68,52 +68,52 @@
         android:layout_height="0dp"
         android:background="@android:color/holo_orange_dark"
         android:gravity="center_vertical|center_horizontal"
-        android:text="/"
+        android:text="@string/divisao"
         android:textColor="@android:color/background_dark"
         app:layout_constraintBottom_toTopOf="@+id/txtMultiplicacao"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textPercentual"
+        app:layout_constraintStart_toEndOf="@+id/txtPercentual"
         app:layout_constraintTop_toBottomOf="@+id/txtResult" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/txtSete"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@android:color/darker_gray"
         android:gravity="center_vertical|center_horizontal"
-        android:text="7"
+        android:text="@string/sete"
         android:textColor="@android:color/background_dark"
-        app:layout_constraintBottom_toTopOf="@+id/textView12"
+        app:layout_constraintBottom_toTopOf="@+id/txtQuatro"
         app:layout_constraintEnd_toStartOf="@+id/txtA"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtAC" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/txtNove"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@android:color/darker_gray"
         android:gravity="center_vertical|center_horizontal"
-        android:text="9"
+        android:text="@string/nove"
         android:textColor="@android:color/background_dark"
-        app:layout_constraintBottom_toTopOf="@+id/textView13"
+        app:layout_constraintBottom_toTopOf="@+id/txtSeis"
         app:layout_constraintEnd_toStartOf="@+id/txtDivisao"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/txtA"
-        app:layout_constraintTop_toBottomOf="@+id/textPercentual" />
+        app:layout_constraintTop_toBottomOf="@+id/txtPercentual" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/txtOito"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@android:color/darker_gray"
         android:gravity="center_vertical|center_horizontal"
-        android:text="8"
+        android:text="@string/oito"
         android:textColor="@android:color/background_dark"
-        app:layout_constraintBottom_toTopOf="@+id/textView14"
-        app:layout_constraintEnd_toStartOf="@+id/textPercentual"
+        app:layout_constraintBottom_toTopOf="@+id/txtCinco"
+        app:layout_constraintEnd_toStartOf="@+id/txtPercentual"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/txtAC"
         app:layout_constraintTop_toBottomOf="@+id/txtA" />
@@ -124,55 +124,55 @@
         android:layout_height="0dp"
         android:background="@android:color/holo_orange_dark"
         android:gravity="center_vertical|center_horizontal"
-        android:text="X"
+        android:text="@string/multiplicacao"
         android:textColor="@android:color/background_dark"
         app:layout_constraintBottom_toTopOf="@+id/txtSubtracao"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textPercentual"
+        app:layout_constraintStart_toEndOf="@+id/txtPercentual"
         app:layout_constraintTop_toBottomOf="@+id/txtDivisao" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/txtQuatro"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@android:color/darker_gray"
         android:gravity="center_vertical|center_horizontal"
-        android:text="4"
+        android:text="@string/quatro"
         android:textColor="@android:color/background_dark"
-        app:layout_constraintBottom_toTopOf="@+id/textView16"
+        app:layout_constraintBottom_toTopOf="@+id/txtUm"
         app:layout_constraintEnd_toStartOf="@+id/txtA"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/txtSete" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/txtSeis"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@android:color/darker_gray"
         android:gravity="center_vertical|center_horizontal"
-        android:text="6"
+        android:text="@string/seis"
         android:textColor="@android:color/background_dark"
-        app:layout_constraintBottom_toTopOf="@+id/textView17"
+        app:layout_constraintBottom_toTopOf="@+id/txtTres"
         app:layout_constraintEnd_toStartOf="@+id/txtDivisao"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/txtA"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/txtNove" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/txtCinco"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@android:color/darker_gray"
         android:gravity="center_vertical|center_horizontal"
-        android:text="5"
+        android:text="@string/cinco"
         android:textColor="@android:color/background_dark"
-        app:layout_constraintBottom_toTopOf="@+id/textView18"
-        app:layout_constraintEnd_toStartOf="@+id/textPercentual"
+        app:layout_constraintBottom_toTopOf="@+id/txtDois"
+        app:layout_constraintEnd_toStartOf="@+id/txtPercentual"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/txtAC"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintTop_toBottomOf="@+id/txtOito" />
 
     <TextView
         android:id="@+id/txtSubtracao"
@@ -180,55 +180,55 @@
         android:layout_height="0dp"
         android:background="@android:color/holo_orange_dark"
         android:gravity="center_vertical|center_horizontal"
-        android:text="-"
+        android:text="@string/subtracao"
         android:textColor="@android:color/background_dark"
         app:layout_constraintBottom_toTopOf="@+id/txtAdicao"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textPercentual"
+        app:layout_constraintStart_toEndOf="@+id/txtPercentual"
         app:layout_constraintTop_toBottomOf="@+id/txtMultiplicacao" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/txtUm"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@android:color/darker_gray"
         android:gravity="center_vertical|center_horizontal"
-        android:text="1"
+        android:text="@string/um"
         android:textColor="@android:color/background_dark"
         app:layout_constraintBottom_toTopOf="@+id/txtZero"
         app:layout_constraintEnd_toStartOf="@+id/txtA"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintTop_toBottomOf="@+id/txtQuatro" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/txtTres"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@android:color/darker_gray"
         android:gravity="center_vertical|center_horizontal"
-        android:text="3"
+        android:text="@string/tres"
         android:textColor="@android:color/background_dark"
         app:layout_constraintBottom_toTopOf="@+id/txtSeparador"
         app:layout_constraintEnd_toStartOf="@+id/txtDivisao"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/txtA"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        app:layout_constraintTop_toBottomOf="@+id/txtSeis" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/txtDois"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@android:color/darker_gray"
         android:gravity="center_vertical|center_horizontal"
-        android:text="2"
+        android:text="@string/dois"
         android:textColor="@android:color/background_dark"
         app:layout_constraintBottom_toTopOf="@+id/txtZero"
-        app:layout_constraintEnd_toStartOf="@+id/textPercentual"
+        app:layout_constraintEnd_toStartOf="@+id/txtPercentual"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/txtAC"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        app:layout_constraintTop_toBottomOf="@+id/txtCinco" />
 
     <TextView
         android:id="@+id/txtAdicao"
@@ -236,12 +236,12 @@
         android:layout_height="0dp"
         android:background="@android:color/holo_orange_dark"
         android:gravity="center_vertical|center_horizontal"
-        android:text="+"
+        android:text="@string/adicao"
         android:textColor="@android:color/background_dark"
         app:layout_constraintBottom_toTopOf="@+id/txtIgual"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textPercentual"
+        app:layout_constraintStart_toEndOf="@+id/txtPercentual"
         app:layout_constraintTop_toBottomOf="@+id/txtSubtracao" />
 
     <TextView
@@ -250,13 +250,13 @@
         android:layout_height="0dp"
         android:background="@android:color/darker_gray"
         android:gravity="center_vertical|center_horizontal"
-        android:text=","
+        android:text="@string/separador"
         android:textColor="@android:color/background_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/txtDivisao"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/txtA"
-        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+        app:layout_constraintTop_toBottomOf="@+id/txtTres" />
 
     <TextView
         android:id="@+id/txtZero"
@@ -264,10 +264,10 @@
         android:layout_height="90dp"
         android:background="@android:color/darker_gray"
         android:gravity="center_vertical|center_horizontal"
-        android:text="0"
+        android:text="@string/zero"
         android:textColor="@android:color/background_dark"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textPercentual"
+        app:layout_constraintEnd_toStartOf="@+id/txtPercentual"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -277,12 +277,12 @@
         android:layout_height="0dp"
         android:background="@android:color/holo_orange_dark"
         android:gravity="center_vertical|center_horizontal"
-        android:text="="
+        android:text="@string/igual"
         android:textColor="@android:color/background_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textPercentual"
+        app:layout_constraintStart_toEndOf="@+id/txtPercentual"
         app:layout_constraintTop_toBottomOf="@+id/txtAdicao" />
 
 </android.support.constraint.ConstraintLayout>
