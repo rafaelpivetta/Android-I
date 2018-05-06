@@ -7,9 +7,14 @@ import android.os.Bundle
 import entity.Produto
 import kotlinx.android.synthetic.main.activity_add_produto.*
 import DAO.AppDatabase
+import android.Manifest
+import android.app.Activity
 import android.arch.persistence.room.Room
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.provider.MediaStore
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import java.io.ByteArrayOutputStream
 import java.util.*
 import android.util.Base64
@@ -20,10 +25,20 @@ class AddProdutoActivity : AppCompatActivity() {
     private val CAMERA = 1
     private var imagemTexto : String = ""
 
+    companion object{
+        const val REQUEST_PERMISSION = 1
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_produto)
-        imagem.setOnClickListener { takePhotoFromCamera() }
+        imagem.setOnClickListener {
+            if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), REQUEST_PERMISSION)
+            }else {
+                takePhotoFromCamera()
+            }
+        }
 
         buttonSalvar.setOnClickListener {
 
@@ -39,6 +54,18 @@ class AddProdutoActivity : AppCompatActivity() {
             db.produtoDao().insert(p)
 
             startActivity(Intent(this@AddProdutoActivity, MainActivity::class.java))
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        when (requestCode){
+            REQUEST_PERMISSION -> {
+                if( permissions.contains(Manifest.permission.CAMERA) && grantResults.contains(PackageManager.PERMISSION_GRANTED) ){
+                    takePhotoFromCamera()
+                }
+            }
         }
     }
 
