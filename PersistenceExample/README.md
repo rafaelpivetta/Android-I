@@ -13,4 +13,4 @@ Prof. Kenniston Bonfim
 ## Disciplina
 Android I
 
-##GIT HUB https://github.com/rafaelpivetta/Android-I/PersistenceExample
+##GIT HUB https://github.com/rafaelpivetta/Android-I/tree/master/PersistenceExample
