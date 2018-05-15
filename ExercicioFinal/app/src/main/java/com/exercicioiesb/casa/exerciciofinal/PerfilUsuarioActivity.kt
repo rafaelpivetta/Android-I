@@ -1,6 +1,7 @@
 package com.exercicioiesb.casa.exerciciofinal
 
 import android.Manifest
+import android.app.Activity
 import android.arch.persistence.room.Room
 import android.content.DialogInterface
 import android.os.Bundle
@@ -12,19 +13,24 @@ import kotlinx.android.synthetic.main.activity_perfilusuario.*
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.net.Uri
+import android.os.Environment
 import android.provider.MediaStore
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
+import android.support.v4.content.FileProvider
 import android.support.v7.app.AlertDialog
 import android.text.Editable
 import android.util.Base64
 import android.widget.Toast
 import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.IOException
 
 
 class PerfilUsuarioActivity : AppCompatActivity(){
 
-//    private val CAMERA = 1
+    lateinit var imgPath: String
 
     private var CAMERA = 0
     private var GALLERY = 1
@@ -108,6 +114,7 @@ class PerfilUsuarioActivity : AppCompatActivity(){
             u.matricula = edtMatricula.text.toString()
             u.telefone = edtTelefone.text.toString()
             u.senha = edtSenha.text.toString()
+            u.foto = imgPath
 
             Log.i("Perfilusuario", "Campos: "+ u.nome+" "+u.email+" "+u.matricula+" "+ u.telefone+" "+u.senha+" "+u.uid)
 
@@ -160,7 +167,37 @@ class PerfilUsuarioActivity : AppCompatActivity(){
 
     private fun takePhotoFromCamera() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+
+        if(intent.resolveActivity(packageManager) != null){
+            var img: File? = null
+            try{
+                img = createImageFile()
+            }catch(e: IOException){}
+
+            if(img != null){
+                val imgUri = FileProvider.getUriForFile(
+                        this,
+                        "com.example.android.fileprovider",
+                        img
+                )
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, imgUri)
+            }
+        }
+
         startActivityForResult(intent, CAMERA)
+    }
+
+    private fun createImageFile(): File? {
+        val fileName = "avatar"
+        val storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        val image = File.createTempFile(
+                fileName,
+                ".png",
+                storageDir
+        )
+        imgPath = image.absolutePath
+
+        return image
     }
 
     fun openGallery() {
@@ -175,15 +212,20 @@ class PerfilUsuarioActivity : AppCompatActivity(){
         super.onActivityResult(requestCode, resultCode, data)
 
         var thumbnail: Bitmap
-        if(requestCode == CAMERA) {
-            thumbnail = data!!.extras!!.get("data") as Bitmap
-            avatar.setImageBitmap(thumbnail)
+        if(requestCode == CAMERA && resultCode == Activity.RESULT_OK) {
 
-            val outByte = ByteArrayOutputStream()
+            avatar.rotation = 90f
+            avatar.setImageURI(Uri.parse(imgPath))
+            Log.i("Caminho", imgPath)
 
-            thumbnail.compress(Bitmap.CompressFormat.PNG, 100, outByte)
-
-            imagemTexto = Base64.encodeToString(outByte.toByteArray(), Base64.DEFAULT)
+//            thumbnail = data!!.extras!!.get("data") as Bitmap
+//            avatar.setImageBitmap(thumbnail)
+//
+//            val outByte = ByteArrayOutputStream()
+//
+//            thumbnail.compress(Bitmap.CompressFormat.PNG, 100, outByte)
+//
+//            imagemTexto = Base64.encodeToString(outByte.toByteArray(), Base64.DEFAULT)
 
             //  Toast.makeText(this@MainActivity, "Foto capturada!", Toast.LENGTH_SHORT).show()
 
