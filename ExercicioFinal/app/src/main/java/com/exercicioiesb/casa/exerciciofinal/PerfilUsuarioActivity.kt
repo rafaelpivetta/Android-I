@@ -1,6 +1,8 @@
 package com.exercicioiesb.casa.exerciciofinal
 
+import android.Manifest
 import android.arch.persistence.room.Room
+import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
@@ -8,16 +10,46 @@ import com.exercicioiesb.casa.exerciciofinal.dao.AppDatabase
 import com.exercicioiesb.casa.exerciciofinal.entity.Usuario
 import kotlinx.android.synthetic.main.activity_perfilusuario.*
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.provider.MediaStore
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
+import android.support.v7.app.AlertDialog
 import android.text.Editable
+import android.util.Base64
 import android.widget.Toast
+import java.io.ByteArrayOutputStream
 
 
 class PerfilUsuarioActivity : AppCompatActivity(){
+
+//    private val CAMERA = 1
+
+    private var CAMERA = 0
+    private var GALLERY = 1
+    private var imagemTexto : String = ""
+
+    companion object{
+        const val REQUEST_PERMISSION = 1
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_perfilusuario)
+
+        avatar.setOnClickListener {
+            exibirEscolhaOrigem()
+//            if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+//                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), REQUEST_PERMISSION)
+//            }else {
+//                takePhotoFromCamera()
+//            }
+        }
+
+
+
 
         var db = Room.databaseBuilder(applicationContext,
                 AppDatabase::class.java, "exerciciofinal").allowMainThreadQueries().build()
@@ -85,6 +117,97 @@ class PerfilUsuarioActivity : AppCompatActivity(){
             finish()
         }
 
+    }
+
+    internal fun exibirEscolhaOrigem() {
+
+        val alert = AlertDialog.Builder(this@PerfilUsuarioActivity)
+        alert.setMessage("Selecione origem")
+                .setTitle(R.string.app_name)
+                .setPositiveButton("Câmera", DialogInterface.OnClickListener { dialogInterface, i ->
+                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), REQUEST_PERMISSION)
+                    } else {
+                        takePhotoFromCamera()
+                    }
+                })
+
+                .setNegativeButton("Galeria", DialogInterface.OnClickListener { dialogInterface, i ->
+                    if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+                        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), REQUEST_PERMISSION)
+                    } else {
+                        openGallery()
+                    }
+                })
+
+                .setNeutralButton("Cancelar", null)
+                .setIcon(R.drawable.logo_iesb_1)
+        alert.create().show()
+    }
+
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        when (requestCode){
+            REQUEST_PERMISSION -> {
+                if( permissions.contains(Manifest.permission.CAMERA) && grantResults.contains(PackageManager.PERMISSION_GRANTED) ){
+                    takePhotoFromCamera()
+                }
+            }
+        }
+    }
+
+    private fun takePhotoFromCamera() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(intent, CAMERA)
+    }
+
+    fun openGallery() {
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(Intent.createChooser(intent, "Selecionar Imagem"), GALLERY)
+    }
+
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        super.onActivityResult(requestCode, resultCode, data)
+
+        var thumbnail: Bitmap
+        if(requestCode == CAMERA) {
+            thumbnail = data!!.extras!!.get("data") as Bitmap
+            avatar.setImageBitmap(thumbnail)
+
+            val outByte = ByteArrayOutputStream()
+
+            thumbnail.compress(Bitmap.CompressFormat.PNG, 100, outByte)
+
+            imagemTexto = Base64.encodeToString(outByte.toByteArray(), Base64.DEFAULT)
+
+            //  Toast.makeText(this@MainActivity, "Foto capturada!", Toast.LENGTH_SHORT).show()
+
+            //Toast.makeText(this@MainActivity, "Base64: " + base64, Toast.LENGTH_SHORT).show()
+        }else if(requestCode == GALLERY){
+            thumbnail = MediaStore.Images.Media.getBitmap(applicationContext.contentResolver, data?.getData())
+            var scaledBm = scaleBitmapToMaxSize(600, thumbnail)
+            avatar.setImageBitmap(scaledBm)
+        }
+    }
+
+    fun scaleBitmapToMaxSize(maxSize: Int, bm: Bitmap): Bitmap {
+        val outWidth: Int
+        val outHeight: Int
+        val inWidth = bm.width
+        val inHeight = bm.height
+        if (inWidth > inHeight) {
+            outWidth = maxSize
+            outHeight = inHeight * maxSize / inWidth
+        } else {
+            outHeight = maxSize
+            outWidth = inWidth * maxSize / inHeight
+        }
+        return Bitmap.createScaledBitmap(bm, outWidth, outHeight, false)
     }
 
 }
