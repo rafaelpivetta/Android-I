@@ -2,6 +2,7 @@
 ## Alunos
 Matr: 1731088010 - Bruno Portela de Moura<br/>
 Matr: 1731088030 - Fabio de Oliveira Sales<br/>
+Matr: 1731088005 - Pedro Kerdol da Silva Junior<br/>
 Matr: 1731088025 - Rafael Pivetta Balbuena<br/>
 
 ## ROOM Persistence - Carrinho de compras - Hackathon em sala de aula
