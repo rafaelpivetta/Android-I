@@ -30,7 +30,7 @@ import java.io.IOException
 
 class PerfilUsuarioActivity : AppCompatActivity(){
 
-    lateinit var imgPath: String
+    private var imgPath: String = ""
 
     private var CAMERA = 0
     private var GALLERY = 1
@@ -89,6 +89,11 @@ class PerfilUsuarioActivity : AppCompatActivity(){
         btnSalvar.setOnClickListener{
 
             val util : Util = Util()
+
+            if(imgPath==""){
+                Toast.makeText(this, "Selecione uma imagem", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
 
             if(edtNomeUsuario.text.isEmpty() || edtMatricula.text.isEmpty() || edtTelefone.text.isEmpty() || edtSenha.text.isEmpty() || edtConfirmarSenha.text.isEmpty()){
                 Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_LONG).show()
